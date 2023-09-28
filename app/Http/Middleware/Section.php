@@ -5,8 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
-class regNew
+class Section
 {
     /**
      * Handle an incoming request.
@@ -15,9 +16,9 @@ class regNew
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!auth()->check() || !auth()->user()->is_admin){
-            abort(403);
+        if(Auth::user() && Auth::user()->is_admin == 1){
+            return $next($request);
         }
-        return $next($request);
+        return redirect('dashboard')->with('error','You have not admin access');
     }
 }

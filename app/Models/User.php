@@ -24,6 +24,8 @@ class User extends Authenticatable
         'email_verified_at',
         'remember_token',
         'is_admin',
+
+        
     ];
 
     /**
@@ -44,4 +46,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

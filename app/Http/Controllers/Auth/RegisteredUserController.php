@@ -23,7 +23,11 @@ class RegisteredUserController extends Controller
     public function create(): View
     {
        
-        return view('auth.register');
+        if(Auth::user() && Auth::user()->is_admin == 1){
+            return view('auth.register');
+        }
+        return view('dashboard');
+        
     }
 
     /**
